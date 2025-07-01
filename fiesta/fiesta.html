@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+    <link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Salón Cachika </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #2ab963;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+        }
+        .galeria {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 10px;
+        }
+        .galeria img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .galeria img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Salón de Fiestas "El cachika"</h1>
+        <p>Tu mejor opcion pa las pachangas :D</p>
+    </header>
+    <section class="galeria">
+        <img src="fiesta2.webp" alt="Salón decorado">
+        <img src="fiesta3.jpg" alt="Mesa de dulces">
+        <img src="infatil.jpg" alt="Fiesta infantil">
+        <img src="salon de fiesta.jpg" alt="Decoración con globos">
+        <img src="pista de baile.webp" alt="Pista de baile">
+
+    </section>
+    <script>
+    const info = [
+        "Salón decorado para eventos especiales",
+        "Mesa de dulces ",
+        "Fiesta infantil",
+        "Clientes satisfechos :D",
+        "Pista de baile"
+    ];
+
+    document.querySelectorAll('.galeria img').forEach((img, idx) => {
+        img.addEventListener('mouseenter', function() {
+            const tooltip = document.createElement('div');
+            tooltip.textContent = info[idx];
+            tooltip.style.position = 'absolute';
+            tooltip.style.background = '#fff';
+            tooltip.style.color = '#333';
+            tooltip.style.padding = '8px 12px';
+            tooltip.style.borderRadius = '6px';
+            tooltip.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+            tooltip.style.top = (img.getBoundingClientRect().top + window.scrollY - 40) + 'px';
+            tooltip.style.left = (img.getBoundingClientRect().left + window.scrollX) + 'px';
+            tooltip.style.zIndex = 1000;
+            tooltip.className = 'custom-tooltip';
+            document.body.appendChild(tooltip);
+            img._tooltip = tooltip;
+        });
+        img.addEventListener('mouseleave', function() {
+            if (img._tooltip) {
+                img._tooltip.remove();
+                img._tooltip = null;
+            }
+        });
+    });
+    </script>
+</body>
+</html>
